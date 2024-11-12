@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A comprehensive learning path for Rust developers transitioning to embedded systems engineering">
+    <meta name="keywords" content="embedded systems, rust, programming, learning path, engineering, Tesla, careers">
+    <meta name="author" content="Evan">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Embedded Systems Learning Path">
+    <meta property="og:description"
+        content="A comprehensive guide for Rust developers transitioning to embedded systems engineering">
+    <meta property="og:image" content="/rust-embedded.png">
+    <meta property="og:url" content="">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@EvanTypesThings">
+    <meta name="twitter:title" content="Embedded Systems Learning Path">
+    <meta name="twitter:description"
+        content="A comprehensive guide for Rust developers transitioning to embedded systems engineering">
+    <meta name="twitter:image" content="/rust-embedded.png">
+
     <title>Embedded Systems Learning Path</title>
+    <!-- Import Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         * {
             margin: 0;
@@ -63,6 +86,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .card:hover {
@@ -123,17 +147,142 @@
             font-size: 0.9rem;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            opacity: 0;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(50px);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+            background: none;
+            border: none;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal.show {
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 1;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #3498db;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h3 {
+            color: #2ecc71;
+            margin-bottom: 1rem;
+        }
+
+        .resource-link {
+            display: block;
+            color: #3498db;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-link {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
             }
-            
+
             body {
+                padding: 1rem;
+            }
+
+            .modal-content {
+                margin: 1rem;
                 padding: 1rem;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -142,7 +291,7 @@
         </header>
 
         <div class="grid">
-            <div class="card">
+            <div class="card" data-modal="core-embedded">
                 <h2>1. Core Embedded Systems</h2>
                 <div class="card-content">
                     <ul>
@@ -158,7 +307,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" data-modal="c-programming">
                 <h2>2. C Programming</h2>
                 <div class="card-content">
                     <ul>
@@ -175,7 +324,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" data-modal="microcontroller">
                 <h2>3. Microcontroller Peripherals</h2>
                 <div class="card-content">
                     <ul>
@@ -193,7 +342,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" data-modal="motor-control">
                 <h2>4. Motor Control & Sensors</h2>
                 <div class="card-content">
                     <ul>
@@ -210,7 +359,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" data-modal="control-systems">
                 <h2>5. Control Systems</h2>
                 <div class="card-content">
                     <ul>
@@ -227,7 +376,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" data-modal="practical-projects">
                 <h2>6. Practical Projects</h2>
                 <div class="card-content">
                     <ul>
@@ -244,6 +393,390 @@
                 </div>
             </div>
         </div>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/LostRhapsody/" class="social-link" target="_blank"
+                    rel="noopener noreferrer">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://x.com/EvanTypesThings" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <svg width="18.9" height="22" viewBox="0 0 1200 1227" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"
+                            fill="white" />
+                    </svg>
+                </a>
+            </div>
+        </footer>
     </div>
+
+    <!-- Modals -->
+    <div id="modal-core-embedded" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal(this)">×</button>
+            <h2>Core Embedded Systems</h2>
+
+            <div class="modal-section">
+                <h3>Getting Started</h3>
+                <p>Begin your journey into embedded systems by understanding the fundamentals of how hardware and
+                    software interact at a low level.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Key Resources</h3>
+                <a href="TODO" class="resource-link">The Embedded Rust Book</a>
+                <a href="TODO" class="resource-link">Real-Time Systems Fundamentals Course</a>
+                <a href="TODO" class="resource-link">STM32 Getting Started Guide</a>
+            </div>
+
+            <div class="modal-section">
+                <h3>Learning Path</h3>
+                <ol>
+                    <li>Start with the Embedded Rust Book to leverage your existing Rust knowledge</li>
+                    <li>Set up your development environment with embedded toolchains</li>
+                    <li>Complete basic GPIO and LED blinking exercises</li>
+                    <li>Progress to more complex peripheral interactions</li>
+                </ol>
+            </div>
+
+            <div class="modal-section">
+                <h3>Recommended Hardware</h3>
+                <ul>
+                    <li>STM32F4 Discovery Board</li>
+                    <li>Arduino Uno (for basic concepts)</li>
+                    <li>Basic electronic components (LEDs, resistors, etc.)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-core-embedded" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal(this)">×</button>
+            <h2>Core Embedded Systems</h2>
+
+            <div class="modal-section">
+                <h3>Getting Started</h3>
+                <p>Begin your journey into embedded systems by understanding the fundamentals of how hardware and
+                    software interact at a low level.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Key Resources</h3>
+                <a href="TODO" class="resource-link">The Embedded Rust Book</a>
+                <a href="TODO" class="resource-link">Real-Time Systems Fundamentals Course</a>
+                <a href="TODO" class="resource-link">STM32 Getting Started Guide</a>
+            </div>
+
+            <div class="modal-section">
+                <h3>Learning Path</h3>
+                <ol>
+                    <li>Start with the Embedded Rust Book to leverage your existing Rust knowledge</li>
+                    <li>Set up your development environment with embedded toolchains</li>
+                    <li>Complete basic GPIO and LED blinking exercises</li>
+                    <li>Progress to more complex peripheral interactions</li>
+                </ol>
+            </div>
+
+            <div class="modal-section">
+                <h3>Recommended Hardware</h3>
+                <ul>
+                    <li>STM32F4 Discovery Board</li>
+                    <li>Arduino Uno (for basic concepts)</li>
+                    <li>Basic electronic components (LEDs, resistors, etc.)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- C Programming Modal -->
+    <div id="modal-c-programming" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal(this)">×</button>
+            <h2>C Programming for Embedded Systems</h2>
+
+            <div class="modal-section">
+                <h3>Getting Started with C</h3>
+                <p>While Rust is your primary language, strong C programming skills are essential for embedded systems
+                    development. Focus on low-level memory management and embedded-specific patterns.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Key Resources</h3>
+                <a href="TODO" class="resource-link">Modern C by Jens Gustedt</a>
+                <a href="TODO" class="resource-link">Embedded C Programming Course</a>
+                <a href="TODO" class="resource-link">C/Rust Interop Guide</a>
+                <a href="TODO" class="resource-link">Memory Management in C</a>
+            </div>
+
+            <div class="modal-section">
+                <h3>Learning Path</h3>
+                <ol>
+                    <li>Master C fundamentals with a focus on pointers and memory management</li>
+                    <li>Study embedded C patterns and best practices</li>
+                    <li>Learn C/Rust interoperability</li>
+                    <li>Practice with bare-metal C programming</li>
+                    <li>Understand toolchains and build systems</li>
+                </ol>
+            </div>
+
+            <div class="modal-section">
+                <h3>Key Topics</h3>
+                <ul>
+                    <li>Pointer arithmetic and memory management</li>
+                    <li>Volatile variables and hardware registers</li>
+                    <li>Interrupt handlers in C</li>
+                    <li>Optimization techniques</li>
+                    <li>Real-time constraints</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Microcontroller Peripherals Modal -->
+    <div id="modal-microcontroller" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal(this)">×</button>
+            <h2>Microcontroller Peripherals</h2>
+
+            <div class="modal-section">
+                <h3>Understanding Peripherals</h3>
+                <p>Master the various peripherals commonly found in microcontrollers and their programming interfaces.
+                    This knowledge is crucial for hardware interaction.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Key Resources</h3>
+                <a href="TODO" class="resource-link">STM32 Peripheral Programming Guide</a>
+                <a href="TODO" class="resource-link">ARM Cortex-M Series Documentation</a>
+                <a href="TODO" class="resource-link">Communication Protocols Deep Dive</a>
+                <a href="TODO" class="resource-link">ADC & PWM Programming Guide</a>
+            </div>
+
+            <div class="modal-section">
+                <h3>Essential Peripherals</h3>
+                <ul>
+                    <li>GPIO (General Purpose Input/Output)</li>
+                    <li>ADC (Analog-to-Digital Converter)</li>
+                    <li>PWM (Pulse Width Modulation)</li>
+                    <li>Timers and Counters</li>
+                    <li>Communication Interfaces (UART, SPI, I2C, CAN)</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Practical Exercises</h3>
+                <ol>
+                    <li>GPIO control and interrupt handling</li>
+                    <li>ADC reading with DMA</li>
+                    <li>PWM signal generation</li>
+                    <li>Serial communication implementation</li>
+                    <li>Timer-based applications</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Motor Control & Sensors Modal -->
+    <div id="modal-motor-control" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal(this)">×</button>
+            <h2>Motor Control & Sensors</h2>
+
+            <div class="modal-section">
+                <h3>Overview</h3>
+                <p>Learn to interface with various types of motors and sensors, essential for thermal system control and
+                    automation applications.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Key Resources</h3>
+                <a href="TODO" class="resource-link">Motor Control Fundamentals</a>
+                <a href="TODO" class="resource-link">Sensor Integration Guide</a>
+                <a href="TODO" class="resource-link">BLDC Motor Programming</a>
+                <a href="TODO" class="resource-link">Encoder Interface Guide</a>
+            </div>
+
+            <div class="modal-section">
+                <h3>Motor Types</h3>
+                <ul>
+                    <li>DC Motors (Brushed)</li>
+                    <li>Brushless DC Motors (BLDC)</li>
+                    <li>Stepper Motors</li>
+                    <li>Servo Motors</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Sensor Integration</h3>
+                <ul>
+                    <li>Temperature Sensors</li>
+                    <li>Position Encoders</li>
+                    <li>Current Sensors</li>
+                    <li>Speed Sensors</li>
+                    <li>Pressure Sensors</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Control Systems Modal -->
+    <div id="modal-control-systems" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal(this)">×</button>
+            <h2>Control Systems</h2>
+
+            <div class="modal-section">
+                <h3>Foundation</h3>
+                <p>Master the principles of control systems theory and its practical application in thermal management
+                    systems.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Key Resources</h3>
+                <a href="TODO" class="resource-link">Control Theory Fundamentals</a>
+                <a href="TODO" class="resource-link">PID Controller Implementation Guide</a>
+                <a href="TODO" class="resource-link">System Modeling and Analysis</a>
+                <a href="TODO" class="resource-link">Thermal Systems Control</a>
+            </div>
+
+            <div class="modal-section">
+                <h3>Core Concepts</h3>
+                <ul>
+                    <li>PID Control Theory</li>
+                    <li>System Modeling</li>
+                    <li>Transfer Functions</li>
+                    <li>Stability Analysis</li>
+                    <li>Feedback Systems</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Implementation Steps</h3>
+                <ol>
+                    <li>System identification and modeling</li>
+                    <li>Controller design and tuning</li>
+                    <li>Implementation in embedded systems</li>
+                    <li>Testing and validation</li>
+                    <li>Performance optimization</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Practical Projects Modal -->
+    <div id="modal-practical-projects" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal(this)">×</button>
+            <h2>Practical Projects</h2>
+
+            <div class="modal-section">
+                <h3>Project-Based Learning</h3>
+                <p>Build real-world projects that combine all the learned concepts into practical applications. Document
+                    your progress to showcase your skills.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Project Resources</h3>
+                <a href="TODO" class="resource-link">Temperature Monitor Project Guide</a>
+                <a href="TODO" class="resource-link">Fan Controller Implementation</a>
+                <a href="TODO" class="resource-link">Mini HVAC System Tutorial</a>
+                <a href="TODO" class="resource-link">Project Documentation Templates</a>
+            </div>
+
+            <div class="modal-section">
+                <h3>Recommended Projects</h3>
+                <div class="project-list">
+                    <h4>1. Temperature Monitor</h4>
+                    <ul>
+                        <li>Interface with temperature sensors</li>
+                        <li>Implement I2C/SPI communication</li>
+                        <li>Create data logging system</li>
+                        <li>Build user interface</li>
+                    </ul>
+
+                    <h4>2. Fan Controller</h4>
+                    <ul>
+                        <li>PWM control implementation</li>
+                        <li>PID controller design</li>
+                        <li>Temperature feedback loop</li>
+                        <li>Multiple speed modes</li>
+                    </ul>
+
+                    <h4>3. Mini HVAC System</h4>
+                    <ul>
+                        <li>Multiple sensor integration</li>
+                        <li>Complex control algorithms</li>
+                        <li>User interface development</li>
+                        <li>System optimization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Documentation Guidelines</h3>
+                <ul>
+                    <li>Maintain detailed project logs</li>
+                    <li>Create technical documentation</li>
+                    <li>Record performance metrics</li>
+                    <li>Share code on GitHub</li>
+                    <li>Build video demonstrations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Enhanced Modal functionality
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const modalId = `modal-${card.dataset.modal}`;
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'block';
+                    // Force a reflow before adding the show class
+                    modal.offsetHeight;
+                    modal.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        function closeModal(button) {
+            const modal = button.closest('.modal');
+            modal.classList.remove('show');
+            // Wait for the animation to complete before hiding the modal
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400); // Match this with the transition duration
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target.classList.contains('modal')) {
+                closeModal(event.target.querySelector('.close-modal'));
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        closeModal(modal.querySelector('.close-modal'));
+                    }
+                });
+            }
+        }); 
+    </script>
 </body>
+
 </html>
