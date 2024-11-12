@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Systems Learning Path</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #1a1a1a, #2c3e50);
+            padding: 2rem;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ecf0f1;
+            opacity: 0.8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+
+        .card-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            margin-left: 1rem;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+            color: #ecf0f1;
+            opacity: 0.9;
+        }
+
+        .card .resources {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(52, 152, 219, 0.2);
+            border-radius: 1rem;
+            margin: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Embedded Systems Learning Path</h1>
+            <p class="subtitle">From Rust Developer to Embedded Systems Engineer</p>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h2>1. Core Embedded Systems</h2>
+                <div class="card-content">
+                    <ul>
+                        <li>Study The Embedded Rust Book</li>
+                        <li>Learn real-time systems concepts</li>
+                        <li>Practice with STM32 or Arduino</li>
+                    </ul>
+                    <div class="resources">
+                        <span class="tag">Embedded Rust Book</span>
+                        <span class="tag">STM32</span>
+                        <span class="tag">Real-time Systems</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>2. C Programming</h2>
+                <div class="card-content">
+                    <ul>
+                        <li>Learn Modern C programming</li>
+                        <li>Study embedded C patterns</li>
+                        <li>Practice memory management</li>
+                        <li>Understand C/Rust differences</li>
+                    </ul>
+                    <div class="resources">
+                        <span class="tag">Modern C</span>
+                        <span class="tag">Embedded C</span>
+                        <span class="tag">Memory Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>3. Microcontroller Peripherals</h2>
+                <div class="card-content">
+                    <ul>
+                        <li>Master GPIO operations</li>
+                        <li>Learn Timer configurations</li>
+                        <li>Practice ADC and PWM</li>
+                        <li>Study communication protocols</li>
+                    </ul>
+                    <div class="resources">
+                        <span class="tag">GPIO</span>
+                        <span class="tag">ADC</span>
+                        <span class="tag">PWM</span>
+                        <span class="tag">SPI/I2C</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>4. Motor Control & Sensors</h2>
+                <div class="card-content">
+                    <ul>
+                        <li>Work with various motor types</li>
+                        <li>Interface with sensors</li>
+                        <li>Build control systems</li>
+                        <li>Implement feedback loops</li>
+                    </ul>
+                    <div class="resources">
+                        <span class="tag">BLDC</span>
+                        <span class="tag">Stepper Motors</span>
+                        <span class="tag">Encoders</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>5. Control Systems</h2>
+                <div class="card-content">
+                    <ul>
+                        <li>Study PID controllers</li>
+                        <li>Learn control theory</li>
+                        <li>Practice system stability</li>
+                        <li>Implement thermal control</li>
+                    </ul>
+                    <div class="resources">
+                        <span class="tag">PID</span>
+                        <span class="tag">Control Theory</span>
+                        <span class="tag">System Stability</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>6. Practical Projects</h2>
+                <div class="card-content">
+                    <ul>
+                        <li>Build temperature monitor</li>
+                        <li>Create fan controller</li>
+                        <li>Develop mini HVAC system</li>
+                        <li>Document your progress</li>
+                    </ul>
+                    <div class="resources">
+                        <span class="tag">Hardware Projects</span>
+                        <span class="tag">Documentation</span>
+                        <span class="tag">Portfolio Building</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
