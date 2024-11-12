@@ -69,6 +69,15 @@
             opacity: 0.8;
         }
 
+        .warning {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            background: #ffa579;
+            color: black;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -287,6 +296,7 @@
         <header>
             <h1>Embedded Systems Learning Path</h1>
             <p class="subtitle">From Rust Developer to Embedded Systems Engineer</p>
+            <i data-lucide="triangle-alert"></i><p class="warning">Site is still WIP. Most resource URLs are not set.</p><i data-lucide="triangle-alert"></i>
         </header>
 
         <div class="grid">
@@ -412,45 +422,6 @@
     </div>
 
     <!-- Modals -->
-    <div id="modal-core-embedded" class="modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal(this)">×</button>
-            <h2>Core Embedded Systems</h2>
-
-            <div class="modal-section">
-                <h3>Getting Started</h3>
-                <p>Begin your journey into embedded systems by understanding the fundamentals of how hardware and
-                    software interact at a low level.</p>
-            </div>
-
-            <div class="modal-section">
-                <h3>Key Resources</h3>
-                <a href="TODO" class="resource-link">The Embedded Rust Book</a>
-                <a href="TODO" class="resource-link">Real-Time Systems Fundamentals Course</a>
-                <a href="TODO" class="resource-link">STM32 Getting Started Guide</a>
-            </div>
-
-            <div class="modal-section">
-                <h3>Learning Path</h3>
-                <ol>
-                    <li>Start with the Embedded Rust Book to leverage your existing Rust knowledge</li>
-                    <li>Set up your development environment with embedded toolchains</li>
-                    <li>Complete basic GPIO and LED blinking exercises</li>
-                    <li>Progress to more complex peripheral interactions</li>
-                </ol>
-            </div>
-
-            <div class="modal-section">
-                <h3>Recommended Hardware</h3>
-                <ul>
-                    <li>STM32F4 Discovery Board</li>
-                    <li>Arduino Uno (for basic concepts)</li>
-                    <li>Basic electronic components (LEDs, resistors, etc.)</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <div id="modal-core-embedded" class="modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal(this)">×</button>
